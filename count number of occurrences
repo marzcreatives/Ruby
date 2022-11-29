@@ -1,0 +1,23 @@
+# For this challenge, create a program that determines the number of occurrences of each letter in the quote 
+# "You can have data without information, but you cannot have information without data.", 
+# and output a list with each letter and its frequency.
+
+aString = "You can have data without information, but you cannot have information without data."
+myString = aString.downcase
+
+char = myString.split("")
+
+frequencies = Hash.new(0)
+char.each do |alph|
+if alph != "." && alph !=  "," && alph != " "
+frequencies[alph] += 1
+end
+end
+
+frequencies = frequencies.sort_by do |alph, count|
+alph
+end
+
+frequencies.each do |alph, count|
+puts alph + " " + count.to_s 
+end
