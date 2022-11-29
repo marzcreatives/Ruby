@@ -1,0 +1,45 @@
+#This Computer class generates virtual computer instances, and can update or delete them.
+
+class Computer
+ @@users = Hash.new {0}
+
+  def initialize(username,password)
+  @username = username
+  @password = password
+  @files = {}
+  @@users[username] = password
+  end
+
+  def create(filename)
+  time = Time.now
+  @files[filename] = time
+  puts "#{filename} has been created at #{time}using #{@username}."
+  end
+
+  def update
+   puts "Which file do you want to update?"
+    file_update = gets.chomp
+   if file_update == filename 
+    puts "What is the new name you want to set?"
+    new_filename = gets.chomp
+   @files[:new_filename] = @files.delete :filename
+   end
+  end
+
+  def delete(filename)
+   puts "Which file do you want to delete?"
+    file_delete = gets.chomp
+    if file_delete == filename 
+     @files.delete :filename
+    else 
+    puts "That file does not exist."
+   end
+  end
+
+ def Computer.get_users
+ return @@users
+ end
+end
+
+my_computer = Computer.new("R4V3N","Yes123")
+my_computer.create("TestFile1.txt")
